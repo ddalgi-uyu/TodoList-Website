@@ -1,5 +1,5 @@
 import './App.css';
-import todoList from './components/todoList';
+import todoList from './components/TodoList';
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,

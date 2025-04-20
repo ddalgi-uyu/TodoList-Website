@@ -1,7 +1,22 @@
-const todoItem = () => {
+const TodoItem = (props) => {
+    const { id, text, done, onToggleItem } = props;
+
+    const atClick = () => {
+        onToggleItem(id);
+    };
+
+    let className = 'todo-item';
+    if (done) {
+        className += ' done';
+    }
+    
     return (
-        <div>todo item</div>
-    )
+        <section>
+            <li className={className} onClick={atClick}>
+                {text}
+            </li>
+        </section>
+    );
 }
 
-export default todoItem
+export default TodoItem
