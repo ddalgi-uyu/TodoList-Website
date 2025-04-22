@@ -1,9 +1,18 @@
 import { useState } from 'react'
 import TodoForm from './TodoForm'
 import TodoItem from './TodoItem';
+import axios from 'axios';
 
 const TodoList = () => {
     const [todoList, setTodoList] = useState([{id: 1, text: "sample todoList", done: false}]);
+
+    // useEffect(() => {
+       
+    //     axios.get("apiURL").then((response) => {
+            
+    //     });
+      
+    // }, []);
 
     const atAddItem = (text) => {
         const todoItem = {
