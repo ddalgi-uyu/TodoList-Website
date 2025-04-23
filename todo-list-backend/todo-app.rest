@@ -1,0 +1,37 @@
+### GET /
+GET http://localhost:5000
+
+### 
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "username": "",
+    "password": ""
+}
+
+### GET todo
+GET http://localhost:5000/todos
+Authorization: 
+
+### POST todo
+POST http://localhost:5000/todos
+Authorization: 
+Content-Type: application/json
+
+{
+    "task": "Finish coding the project"
+}
+
+### UPDATE todo
+PUT http://localhost:5000/todos/2
+Authorization: 
+Content-Type: application/json
+
+{
+    "completed": 1
+}
+
+### DELETE todo
+delete http://localhost:5000/todos/2
+Authorization: 
