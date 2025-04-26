@@ -1,7 +1,6 @@
-const Authenticate = async ({emailVal, passVal}) => {
-    let token = localStorage.getItem('token')
+const Authenticate = async ({apiBase, token, emailVal, passVal}) => {
+    // let token = localStorage.getItem('token')
     let isRegistration = false
-    const apiBase = '/'
 
     try {
         let data
@@ -32,11 +31,13 @@ const Authenticate = async ({emailVal, passVal}) => {
             // fetch todos
             
         } else {
-            throw Error('❌ Failed to authenticate...')
+            throw Error('Failed to authenticate...')
         }
     } catch (err) {
         console.log(err.message)
     }
+
+    return isRegistration
 }
 
 export default Authenticate
