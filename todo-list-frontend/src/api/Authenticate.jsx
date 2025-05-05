@@ -1,5 +1,5 @@
 const Authenticate = async ({apiBase, token, emailVal, passVal}) => {
-    // let token = localStorage.getItem('token')
+    
     let isRegistration = false
 
     try {
