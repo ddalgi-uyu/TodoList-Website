@@ -8,11 +8,13 @@ import authMiddleware from './middleware/authMiddleware'
 const app = express()
 const PORT = process.env.PORT || 5000
 
+// Converting the current module's URL to a file path 
 const __filename = fileURLToFile(import.meta.url)
 const __dirname = dirname(__filename)
 
-// Middleware
+// Parse incoming Json
 app.use(express.json())
+// Serve static file from the public folder
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/', (req, res) => {

@@ -6,22 +6,20 @@ import db from '../db.js'
 const router = express.Router()
 
 router.post('/register', (req, res) => {
-    const { username, password} = req.body
+    const { username, password } = req.body
 
     const hashedPassword = bycrypt.hashSync(password, 8)
 
     try {
-        const insertUser = db.prepare(`INSERT INTO users (username, password)
-            VALUES (?, ?)`)
+        const insertUser = db.prepare(`INSERT INTO users (username, password) VALUES (?, ?)`)
         const result = insertUser.run(username, hashedPassword)
 
         const defaultTodo = `Hello :) Add you first todo!`
-        const inserTodo = db.prepare(`INSERT INTO todos (user_id, task)
-            VALUES (?, ?)`)
-        insertTodo.run(result.laastInsertRowid, defaultTodo)
+        const inserTodo = db.prepare(`INSERT INTO todos (user_id, task) VALUES (?, ?)`)
+        insertTodo.run(result.lastInsertRowid, defaultTodo)
 
         // Create a token
-        const token = jwt.sign({id: result.laastInsertRowid}, 
+        const token = jwt.sign({id: result.lastInsertRowid}, 
             process.env, JWT_SECRET, 
             {expiresIn: '24h'})
 
@@ -35,9 +33,10 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     const {username, password} = req.body
+
     try {
         const getUser = db.prepare(`SELECT * FROM users WHERE username = ?`)
-        const user = db.run(getUser.get(username))
+        const user = getUser.get(username)
 
         if (!user) {
             return res.sendStatus(404).send({messgae: "User not found."})
